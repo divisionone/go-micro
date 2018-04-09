@@ -4,7 +4,7 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/micro/go-micro/broker"
+	"github.com/divisionone/go-micro/broker"
 	"github.com/pborman/uuid"
 )
 

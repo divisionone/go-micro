@@ -11,13 +11,13 @@ import (
 	"time"
 
 	"github.com/micro/go-log"
-	"github.com/micro/go-micro/broker"
-	"github.com/micro/go-micro/codec"
-	"github.com/micro/go-micro/metadata"
-	"github.com/micro/go-micro/registry"
-	"github.com/micro/go-micro/transport"
+	"github.com/divisionone/go-micro/broker"
+	"github.com/divisionone/go-micro/codec"
+	"github.com/divisionone/go-micro/metadata"
+	"github.com/divisionone/go-micro/registry"
+	"github.com/divisionone/go-micro/transport"
 
-	"github.com/micro/util/go/lib/addr"
+	"github.com/divisionone/util/go/lib/addr"
 )
 
 type rpcServer struct {
@@ -136,6 +136,11 @@ func (s *rpcServer) Init(opts ...Option) error {
 	for _, opt := range opts {
 		opt(&s.opts)
 	}
+	if s.opts.RandomPort {
+		splitAddress := strings.Split(s.opts.Address, ":")
+		s.opts.Address = splitAddress[0] + ":0"
+	}
+
 	// update internal server
 	s.rpc = &server{
 		name:         s.opts.Name,
@@ -211,6 +216,10 @@ func (s *rpcServer) Register() error {
 		port, _ = strconv.Atoi(parts[len(parts)-1])
 	} else {
 		host = parts[0]
+		partz := strings.Split(config.Address, ":")
+		if len(partz) > 1 {
+			port, _ = strconv.Atoi(partz[len(partz)-1])
+		}
 	}
 
 	addr, err := addr.Extract(host)

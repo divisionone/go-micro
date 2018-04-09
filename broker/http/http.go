@@ -1,7 +1,7 @@
 package http
 
 import (
-	"github.com/micro/go-micro/broker"
+	"github.com/divisionone/go-micro/broker"
 )
 
 func NewBroker(opts ...broker.Option) broker.Broker {

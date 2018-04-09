@@ -1,7 +1,7 @@
 package http
 
 import (
-	"github.com/micro/go-micro/transport"
+	"github.com/divisionone/go-micro/transport"
 )
 
 func NewTransport(opts ...transport.Option) transport.Transport {

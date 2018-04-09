@@ -4,7 +4,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/micro/go-micro/registry"
+	"github.com/divisionone/go-micro/registry"
 	"github.com/micro/mdns"
 )
 

@@ -5,7 +5,7 @@ import (
 	"time"
 
 	consul "github.com/hashicorp/consul/api"
-	"github.com/micro/go-micro/registry"
+	"github.com/divisionone/go-micro/registry"
 )
 
 func Config(c *consul.Config) registry.Option {

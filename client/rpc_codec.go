@@ -4,11 +4,11 @@ import (
 	"bytes"
 	errs "errors"
 
-	"github.com/micro/go-micro/codec"
-	"github.com/micro/go-micro/codec/jsonrpc"
-	"github.com/micro/go-micro/codec/protorpc"
-	"github.com/micro/go-micro/errors"
-	"github.com/micro/go-micro/transport"
+	"github.com/divisionone/go-micro/codec"
+	"github.com/divisionone/go-micro/codec/jsonrpc"
+	"github.com/divisionone/go-micro/codec/protorpc"
+	"github.com/divisionone/go-micro/errors"
+	"github.com/divisionone/go-micro/transport"
 )
 
 const (

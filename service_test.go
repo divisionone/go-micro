@@ -5,8 +5,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/micro/go-micro/registry/mock"
-	proto "github.com/micro/go-micro/server/debug/proto"
+	"github.com/divisionone/go-micro/registry/mock"
+	proto "github.com/divisionone/go-micro/server/debug/proto"
 )
 
 func TestService(t *testing.T) {

@@ -14,9 +14,9 @@ import (
 	"time"
 
 	"github.com/micro/go-log"
-	maddr "github.com/micro/util/go/lib/addr"
-	mnet "github.com/micro/util/go/lib/net"
-	mls "github.com/micro/util/go/lib/tls"
+	maddr "github.com/divisionone/util/go/lib/addr"
+	mnet "github.com/divisionone/util/go/lib/net"
+	mls "github.com/divisionone/util/go/lib/tls"
 )
 
 type buffer struct {

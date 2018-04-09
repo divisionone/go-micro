@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/micro/go-micro/selector"
+	"github.com/divisionone/go-micro/selector"
 )
 
 type ttlKey struct{}

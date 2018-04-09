@@ -13,7 +13,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/micro/go-micro/registry"
+	"github.com/divisionone/go-micro/registry"
 	"github.com/micro/mdns"
 	hash "github.com/mitchellh/hashstructure"
 )

@@ -3,12 +3,12 @@ package cmd
 import (
 	"context"
 
-	"github.com/micro/go-micro/broker"
-	"github.com/micro/go-micro/client"
-	"github.com/micro/go-micro/registry"
-	"github.com/micro/go-micro/selector"
-	"github.com/micro/go-micro/server"
-	"github.com/micro/go-micro/transport"
+	"github.com/divisionone/go-micro/broker"
+	"github.com/divisionone/go-micro/client"
+	"github.com/divisionone/go-micro/registry"
+	"github.com/divisionone/go-micro/selector"
+	"github.com/divisionone/go-micro/server"
+	"github.com/divisionone/go-micro/transport"
 )
 
 type Options struct {

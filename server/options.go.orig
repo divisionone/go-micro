@@ -24,7 +24,6 @@ type Options struct {
 	Version      string
 	HdlrWrappers []HandlerWrapper
 	SubWrappers  []SubscriberWrapper
-	RandomPort   bool
 
 	RegisterTTL time.Duration
 
@@ -106,13 +105,6 @@ func Version(v string) Option {
 func Address(a string) Option {
 	return func(o *Options) {
 		o.Address = a
-	}
-}
-
-// RandomPort forces server back onto a random port
-func RandomPort() Option {
-	return func(o *Options) {
-		o.RandomPort = true
 	}
 }
 

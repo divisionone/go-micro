@@ -3,7 +3,7 @@ package selector
 import (
 	"testing"
 
-	"github.com/micro/go-micro/registry"
+	"github.com/divisionone/go-micro/registry"
 )
 
 func TestFilterEndpoint(t *testing.T) {

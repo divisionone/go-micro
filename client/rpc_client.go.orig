@@ -23,44 +23,6 @@ type rpcClient struct {
 	seq  uint64
 }
 
-type contentTyper interface {
-	ContentType() string
-}
-
-func chainHeader(ctx context.Context, header map[string]string, req contentTyper, opts interface{}) {
-	chain := "…?"
-	if md, ok := metadata.FromContext(ctx); ok {
-		if c, ok := md["Chain"]; ok {
-			chain = c
-		}
-
-		for k, v := range md {
-			header[k] = v
-		}
-	}
-
-	switch v := opts.(type) {
-	case CallOptions:
-		// set timeout in nanoseconds
-		header["Timeout"] = fmt.Sprintf("%d", v.RequestTimeout)
-	}
-
-	if req != nil {
-		// set the content type for the request
-		header["Content-Type"] = req.ContentType()
-		// set the accept header
-		header["Accept"] = req.ContentType()
-
-		// set the chain header
-		switch v := req.(type) {
-		case Request:
-			header["Chain"] = fmt.Sprintf("%s/%s", chain, v.Method())
-		case Publication:
-			header["Chain"] = fmt.Sprintf("%s/%s", chain, v.Topic())
-		}
-	}
-}
-
 func newRpcClient(opt ...Option) Client {
 	opts := newOptions(opt...)
 
@@ -96,7 +58,19 @@ func (r *rpcClient) call(ctx context.Context, address string, req Request, resp 
 		Header: make(map[string]string),
 	}
 
-	chainHeader(ctx, msg.Header, req, opts)
+	md, ok := metadata.FromContext(ctx)
+	if ok {
+		for k, v := range md {
+			msg.Header[k] = v
+		}
+	}
+
+	// set timeout in nanoseconds
+	msg.Header["Timeout"] = fmt.Sprintf("%d", opts.RequestTimeout)
+	// set the content type for the request
+	msg.Header["Content-Type"] = req.ContentType()
+	// set the accept header
+	msg.Header["Accept"] = req.ContentType()
 
 	cf, err := r.newCodec(req.ContentType())
 	if err != nil {
@@ -165,7 +139,19 @@ func (r *rpcClient) stream(ctx context.Context, address string, req Request, opt
 		Header: make(map[string]string),
 	}
 
-	chainHeader(ctx, msg.Header, req, opts)
+	md, ok := metadata.FromContext(ctx)
+	if ok {
+		for k, v := range md {
+			msg.Header[k] = v
+		}
+	}
+
+	// set timeout in nanoseconds
+	msg.Header["Timeout"] = fmt.Sprintf("%d", opts.RequestTimeout)
+	// set the content type for the request
+	msg.Header["Content-Type"] = req.ContentType()
+	// set the accept header
+	msg.Header["Accept"] = req.ContentType()
 
 	cf, err := r.newCodec(req.ContentType())
 	if err != nil {
@@ -456,8 +442,11 @@ func (r *rpcClient) Stream(ctx context.Context, request Request, opts ...CallOpt
 }
 
 func (r *rpcClient) Publish(ctx context.Context, p Publication, opts ...PublishOption) error {
-	header := map[string]string{}
-	chainHeader(ctx, header, p, opts)
+	md, ok := metadata.FromContext(ctx)
+	if !ok {
+		md = make(map[string]string)
+	}
+	md["Content-Type"] = p.ContentType()
 
 	// encode message body
 	cf, err := r.newCodec(p.ContentType())
@@ -473,7 +462,7 @@ func (r *rpcClient) Publish(ctx context.Context, p Publication, opts ...PublishO
 	})
 
 	return r.opts.Broker.Publish(p.Topic(), &broker.Message{
-		Header: header,
+		Header: md,
 		Body:   b.Bytes(),
 	})
 }

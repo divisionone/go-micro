@@ -107,17 +107,8 @@ func Publish(ctx context.Context, p Publication) error {
 	return DefaultClient.Publish(ctx, p)
 }
 
-// NewClient returns the defaultClient
+// Creates a new client with the options passed in
 func NewClient(opt ...Option) Client {
-	return DefaultClient
-}
-
-func NewRPCClient(opt ...Option) Client {
-	return newRpcClient(opt...)
-}
-
-// Creates a new uncached client with the options passed in - one uses this if you need your Option's respected
-func NewUncachedClient(opt ...Option) Client {
 	return newRpcClient(opt...)
 }
 

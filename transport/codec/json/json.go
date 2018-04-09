@@ -3,7 +3,7 @@ package json
 import (
 	"encoding/json"
 
-	"github.com/micro/go-micro/transport/codec"
+	"github.com/divisionone/go-micro/transport/codec"
 )
 
 type jsonCodec struct{}
