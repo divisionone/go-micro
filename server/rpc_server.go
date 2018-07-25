@@ -136,11 +136,6 @@ func (s *rpcServer) Init(opts ...Option) error {
 	for _, opt := range opts {
 		opt(&s.opts)
 	}
-	if s.opts.RandomPort {
-		splitAddress := strings.Split(s.opts.Address, ":")
-		s.opts.Address = splitAddress[0] + ":0"
-	}
-
 	// update internal server
 	s.rpc = &server{
 		name:         s.opts.Name,

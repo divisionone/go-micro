@@ -6,10 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"os"
-	"path/filepath"
-	"runtime"
-	"strings"
 )
 
 // Error implements the error interface.
@@ -18,19 +14,6 @@ type Error struct {
 	Code   int32  `json:"code"`
 	Detail string `json:"detail"`
 	Status string `json:"status"`
-	Source string `json:"source,omitempty"`
-}
-
-func getSource() string {
-	if debug, ok := os.LookupEnv("DEBUG"); ok && debug != "0" {
-		pc, file, line, ok := runtime.Caller(2)
-		if ok {
-			f := runtime.FuncForPC(pc)
-			fn := strings.Split(f.Name(), ".")
-			return fmt.Sprintf("%s:%d %s", filepath.Base(file), line, fn[len(fn)-1])
-		}
-	}
-	return ""
 }
 
 func (e *Error) Error() string {
@@ -66,7 +49,6 @@ func BadRequest(id, format string, a ...interface{}) error {
 		Code:   400,
 		Detail: fmt.Sprintf(format, a...),
 		Status: http.StatusText(400),
-		Source: getSource(),
 	}
 }
 
@@ -77,7 +59,6 @@ func Unauthorized(id, format string, a ...interface{}) error {
 		Code:   401,
 		Detail: fmt.Sprintf(format, a...),
 		Status: http.StatusText(401),
-		Source: getSource(),
 	}
 }
 
@@ -88,7 +69,6 @@ func Forbidden(id, format string, a ...interface{}) error {
 		Code:   403,
 		Detail: fmt.Sprintf(format, a...),
 		Status: http.StatusText(403),
-		Source: getSource(),
 	}
 }
 
@@ -99,7 +79,6 @@ func NotFound(id, format string, a ...interface{}) error {
 		Code:   404,
 		Detail: fmt.Sprintf(format, a...),
 		Status: http.StatusText(404),
-		Source: getSource(),
 	}
 }
 
@@ -110,7 +89,6 @@ func InternalServerError(id, format string, a ...interface{}) error {
 		Code:   500,
 		Detail: fmt.Sprintf(format, a...),
 		Status: http.StatusText(500),
-		Source: getSource(),
 	}
 }
 
@@ -121,6 +99,5 @@ func Conflict(id, format string, a ...interface{}) error {
 		Code:   409,
 		Detail: fmt.Sprintf(format, a...),
 		Status: http.StatusText(409),
-		Source: getSource(),
 	}
 }
