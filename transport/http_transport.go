@@ -13,10 +13,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/micro/go-log"
 	maddr "github.com/divisionone/util/go/lib/addr"
 	mnet "github.com/divisionone/util/go/lib/net"
 	mls "github.com/divisionone/util/go/lib/tls"
+	"github.com/micro/go-log"
 )
 
 type buffer struct {
@@ -84,14 +84,16 @@ func (h *httpTransportClient) Send(m *Message) error {
 		Host:          h.addr,
 	}
 
-	h.Lock()
-	h.bl = append(h.bl, req)
-	select {
-	case h.r <- h.bl[0]:
-		h.bl = h.bl[1:]
-	default:
+	if !h.dialOpts.Stream {
+		h.Lock()
+		h.bl = append(h.bl, req)
+		select {
+		case h.r <- h.bl[0]:
+			h.bl = h.bl[1:]
+		default:
+		}
+		h.Unlock()
 	}
-	h.Unlock()
 
 	// set timeout if its greater than 0
 	if h.ht.opts.Timeout > time.Duration(0) {
