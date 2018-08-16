@@ -1,15 +1,12 @@
 package jsonrpc
 
 import (
-	"bytes"
 	"encoding/json"
 	"errors"
 	"io"
 	"sync"
 
 	"github.com/divisionone/go-micro/codec"
-	"github.com/divisionone/protobuf/jsonpb"
-	"github.com/divisionone/protobuf/proto"
 )
 
 type serverCodec struct {
@@ -78,11 +75,9 @@ func (c *serverCodec) ReadBody(x interface{}) error {
 	if x == nil {
 		return nil
 	}
-	var params [1]json.RawMessage
-	if err := json.Unmarshal(*c.req.Params, &params); err != nil {
-		return err
-	}
-	return jsonpb.Unmarshal(bytes.NewReader(params[0]), x.(proto.Message))
+	var params [1]interface{}
+	params[0] = x
+	return json.Unmarshal(*c.req.Params, &params)
 }
 
 var null = json.RawMessage([]byte("null"))
