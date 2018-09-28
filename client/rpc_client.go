@@ -114,7 +114,7 @@ func (r *rpcClient) call(ctx context.Context, address string, req Request, resp 
 		r.pool.release(address, c, grr)
 	}()
 
-	seq := atomic.LeadUint64(&r.seq)
+	seq := atomic.LoadUint64(&r.seq)
 	atomic.AddUint64(&r.seq, 1)
 
 	stream := &rpcStream{
