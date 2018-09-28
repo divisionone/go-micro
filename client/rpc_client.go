@@ -7,13 +7,14 @@ import (
 	"sync"
 	"time"
 
+	"sync/atomic"
+
 	"github.com/divisionone/go-micro/broker"
 	"github.com/divisionone/go-micro/codec"
 	"github.com/divisionone/go-micro/errors"
 	"github.com/divisionone/go-micro/metadata"
 	"github.com/divisionone/go-micro/selector"
 	"github.com/divisionone/go-micro/transport"
-	"sync/atomic"
 )
 
 type rpcClient struct {
@@ -113,7 +114,7 @@ func (r *rpcClient) call(ctx context.Context, address string, req Request, resp 
 		r.pool.release(address, c, grr)
 	}()
 
-	seq := r.seq
+	seq := atomic.LoadUint64(&r.seq)
 	atomic.AddUint64(&r.seq, 1)
 
 	stream := &rpcStream{
