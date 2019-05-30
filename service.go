@@ -7,12 +7,12 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/micro/cli"
-	"github.com/micro/go-log"
+	"github.com/divisionone/cli"
 	"github.com/divisionone/go-micro/client"
 	"github.com/divisionone/go-micro/cmd"
 	"github.com/divisionone/go-micro/metadata"
 	"github.com/divisionone/go-micro/server"
+	"github.com/micro/go-log"
 )
 
 type service struct {
