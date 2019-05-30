@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/micro/cli"
+	"github.com/divisionone/cli"
 	"github.com/divisionone/go-micro/client"
 	"github.com/divisionone/go-micro/server"
 
