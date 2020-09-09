@@ -221,7 +221,7 @@ func (h *httpTransportSocket) Send(m *Message) error {
 	r := <-h.r
 
 	rsp := &http.Response{
-		Header:        r.Header,
+		Header:        make(http.Header),
 		Body:          &buffer{b},
 		Status:        "200 OK",
 		StatusCode:    200,
