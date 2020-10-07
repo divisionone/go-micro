@@ -109,7 +109,6 @@ func (s *rpcServer) accept(sock transport.Socket) {
 		// TODO: needs better error handling
 		if err := s.rpc.serveRequest(ctx, codec, ct); err != nil {
 			s.wg.Done()
-			log.Logf("Unexpected error serving request, closing socket: %v", err)
 			return
 		}
 		s.wg.Done()
