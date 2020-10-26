@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/divisionone/go-micro/registry"
-	"github.com/micro/mdns"
+	"github.com/divisionone/mdns"
 )
 
 type mdnsWatcher struct {
