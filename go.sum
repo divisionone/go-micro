@@ -14,6 +14,8 @@ github.com/divisionone/go-rcache v0.0.0-20180409064418-3bf8d45e6c93 h1:4rjMcsRjA
 github.com/divisionone/go-rcache v0.0.0-20180409064418-3bf8d45e6c93/go.mod h1:vJbF4YAo+Lai8N/YQMGMvUnkzlFJ3ugh/CL1LbUnsIY=
 github.com/divisionone/go-rcache v1.0.0 h1:AmmoA5Ivo5d/pmrJYa80c5zFQ1YWYq+NkmQH9Z23Qyk=
 github.com/divisionone/go-rcache v1.0.0/go.mod h1:j5vRXoik/VE81nJV8u5j903Q29nlCKc4arv46jYHSm0=
+github.com/divisionone/mdns v1.0.0 h1:xpCugzEnRlDEXsUc8VCHkpRwmPpZLm2N0UFH7ZzUSxw=
+github.com/divisionone/mdns v1.0.0/go.mod h1:7cUhRTUkd3gemDni8EsRfMp4SJ68jqbTBK6ZN7OSozg=
 github.com/divisionone/util v0.0.0-20180409064546-d45e66572862 h1:cbw9JYClwnu5XoZ0e57H+GofGdgmBLsom4At0pMOl5s=
 github.com/divisionone/util v0.0.0-20180409064546-d45e66572862/go.mod h1:SScT9PnJkWkQIogZr3xEmqBEzKpw7zRgQ4IrizowkwI=
 github.com/divisionone/util v1.0.0 h1:EBThV6eLeA5daoGIIdfK75O1RAGOWa1GVg5lCjjswYI=
