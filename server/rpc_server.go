@@ -46,7 +46,7 @@ func newRpcServer(opts ...Option) Server {
 		handlers:    make(map[string]Handler),
 		subscribers: make(map[*subscriber][]broker.Subscriber),
 		exit:        make(chan chan error),
-		wg: wait(options.Context),
+		wg:  		 wait(options.Context),
 	}
 }
 
@@ -113,7 +113,6 @@ func (s *rpcServer) accept(sock transport.Socket) {
 
 		// TODO: needs better error handling
 		if err := s.rpc.serveRequest(ctx, codec, ct); err != nil {
-			log.Logf("Unexpected error serving request, closing socket: %v", err)
 			if s.wg != nil {
 				s.wg.Done()
 			}
