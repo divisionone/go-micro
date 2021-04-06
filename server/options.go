@@ -3,6 +3,7 @@ package server
 import (
 	"context"
 	"time"
+	"sync"
 
 	"github.com/divisionone/go-micro/broker"
 	"github.com/divisionone/go-micro/codec"
@@ -165,12 +166,18 @@ func RegisterTTL(t time.Duration) Option {
 }
 
 // Wait tells the server to wait for requests to finish before exiting
-func Wait(b bool) Option {
+// If `wg` is nil, server only wait for completion of rpc handler.
+// For user need finer grained control, pass a concrete `wg` here, server will
+// wait against it on stop.
+func Wait(wg *sync.WaitGroup) Option {
 	return func(o *Options) {
 		if o.Context == nil {
 			o.Context = context.Background()
 		}
-		o.Context = context.WithValue(o.Context, "wait", b)
+		if wg == nil {
+			wg = new(sync.WaitGroup)
+		}
+		o.Context = context.WithValue(o.Context, "wait", wg)
 	}
 }
 

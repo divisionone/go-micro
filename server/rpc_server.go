@@ -31,7 +31,7 @@ type rpcServer struct {
 	// used for first registration
 	registered bool
 	// graceful exit
-	wg sync.WaitGroup
+	wg *sync.WaitGroup
 }
 
 func newRpcServer(opts ...Option) Server {
@@ -46,6 +46,7 @@ func newRpcServer(opts ...Option) Server {
 		handlers:    make(map[string]Handler),
 		subscribers: make(map[*subscriber][]broker.Subscriber),
 		exit:        make(chan chan error),
+		wg: wait(options.Context),
 	}
 }
 
@@ -66,6 +67,11 @@ func (s *rpcServer) accept(sock transport.Socket) {
 			return
 		}
 
+		// add to wait group if "wait" is opt-in
+		if s.wg != nil {
+			s.wg.Add(1)
+		}
+
 		// we use this Timeout header to set a server deadline
 		to := msg.Header["Timeout"]
 		// we use this Content-Type header to identify the codec needed
@@ -80,6 +86,9 @@ func (s *rpcServer) accept(sock transport.Socket) {
 				},
 				Body: []byte(err.Error()),
 			})
+			if s.wg != nil {
+				s.wg.Done()
+			}
 			return
 		}
 
@@ -102,14 +111,17 @@ func (s *rpcServer) accept(sock transport.Socket) {
 			}
 		}
 
-		// add to wait group
-		s.wg.Add(1)
-		defer s.wg.Done()
-
 		// TODO: needs better error handling
 		if err := s.rpc.serveRequest(ctx, codec, ct); err != nil {
 			log.Logf("Unexpected error serving request, closing socket: %v", err)
+			if s.wg != nil {
+				s.wg.Done()
+			}
 			return
+		}
+
+		if s.wg != nil {
+			s.wg.Done()
 		}
 	}
 }
@@ -400,7 +412,7 @@ func (s *rpcServer) Start() error {
 		ch := <-s.exit
 
 		// wait for requests to finish
-		if wait(s.opts.Context) {
+		if s.wg != nil {
 			s.wg.Wait()
 		}
 
