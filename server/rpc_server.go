@@ -46,7 +46,7 @@ func newRpcServer(opts ...Option) Server {
 		handlers:    make(map[string]Handler),
 		subscribers: make(map[*subscriber][]broker.Subscriber),
 		exit:        make(chan chan error),
-		wg:  		 wait(options.Context),
+		wg:          wait(options.Context),
 	}
 }
 
