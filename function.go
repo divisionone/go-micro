@@ -54,7 +54,7 @@ func newFunction(opts ...Option) Function {
 
 	service.Server().Init(
 		// ensure the service waits for requests to finish
-		server.Wait(nil),
+		server.Wait(true),
 		// wrap handlers and subscribers to finish execution
 		server.WrapHandler(fnHandlerWrapper(fn)),
 		server.WrapSubscriber(fnSubWrapper(fn)),

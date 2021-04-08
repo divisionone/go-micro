@@ -165,19 +165,16 @@ func RegisterTTL(t time.Duration) Option {
 	}
 }
 
-// Wait tells the server to wait for requests to finish before exiting
-// If `wg` is nil, server only wait for completion of rpc handler.
-// For user need finer grained control, pass a concrete `wg` here, server will
-// wait against it on stop.
-func Wait(wg *sync.WaitGroup) Option {
+// Wait tells the server to wait for requests to finish before exiting.
+func Wait(b bool) Option {
 	return func(o *Options) {
 		if o.Context == nil {
 			o.Context = context.Background()
 		}
-		if wg == nil {
-			wg = new(sync.WaitGroup)
+		if b {
+			wg := new(sync.WaitGroup)
+			o.Context = context.WithValue(o.Context, "wait", wg)
 		}
-		o.Context = context.WithValue(o.Context, "wait", wg)
 	}
 }
 
