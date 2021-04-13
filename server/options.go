@@ -3,6 +3,7 @@ package server
 import (
 	"context"
 	"time"
+	"sync"
 
 	"github.com/divisionone/go-micro/broker"
 	"github.com/divisionone/go-micro/codec"
@@ -164,13 +165,16 @@ func RegisterTTL(t time.Duration) Option {
 	}
 }
 
-// Wait tells the server to wait for requests to finish before exiting
+// Wait tells the server to wait for requests to finish before exiting.
 func Wait(b bool) Option {
 	return func(o *Options) {
 		if o.Context == nil {
 			o.Context = context.Background()
 		}
-		o.Context = context.WithValue(o.Context, "wait", b)
+		if b {
+			wg := new(sync.WaitGroup)
+			o.Context = context.WithValue(o.Context, "wait", wg)
+		}
 	}
 }
 
