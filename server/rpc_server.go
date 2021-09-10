@@ -404,6 +404,8 @@ func (s *rpcServer) Start() error {
 	s.opts.Address = ts.Addr()
 	s.Unlock()
 
+	exit := make(chan bool, 1)
+
 	go func() {
 		for {
 			err := ts.Accept(s.accept)
@@ -430,6 +432,7 @@ func (s *rpcServer) Start() error {
 	go func() {
 		// wait for exit
 		ch := <-s.exit
+		exit <- true
 
 		// wait for requests to finish
 		if s.wg != nil {
