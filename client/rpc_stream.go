@@ -68,7 +68,10 @@ func (r *rpcStream) Recv(msg interface{}) error {
 	}
 
 	var resp response
-	if err := r.codec.ReadResponseHeader(&resp); err != nil {
+	r.Unlock()
+	err := r.codec.ReadResponseHeader(&resp)
+	r.Lock()
+	if err != nil {
 		if err == io.EOF && !r.isClosed() {
 			r.err = io.ErrUnexpectedEOF
 			return io.ErrUnexpectedEOF
@@ -87,11 +90,18 @@ func (r *rpcStream) Recv(msg interface{}) error {
 		} else {
 			r.err = io.EOF
 		}
-		if err := r.codec.ReadResponseBody(nil); err != nil {
+
+		r.Unlock()
+		err = r.codec.ReadResponseBody(nil)
+		r.Lock()
+		if err != nil {
 			r.err = err
 		}
 	default:
-		if err := r.codec.ReadResponseBody(msg); err != nil {
+		r.Unlock()
+		err = r.codec.ReadResponseBody(msg)
+		r.Lock()
+		if err != nil {
 			r.err = err
 		}
 	}
@@ -106,11 +116,15 @@ func (r *rpcStream) Error() error {
 }
 
 func (r *rpcStream) Close() error {
+	r.RLock()
+
 	select {
 	case <-r.closed:
+		r.RUnlock()
 		return nil
 	default:
 		close(r.closed)
+		r.RUnlock()
 		return r.codec.Close()
 	}
 }
