@@ -7,7 +7,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/micro/go-log"
+	"github.com/divisionone/micro-go-log"
 	"github.com/pborman/uuid"
 )
 
