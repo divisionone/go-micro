@@ -13,10 +13,10 @@ import (
 	"sync"
 	"time"
 
+	"github.com/divisionone/micro-go-log"
 	maddr "github.com/divisionone/util/go/lib/addr"
 	mnet "github.com/divisionone/util/go/lib/net"
 	mls "github.com/divisionone/util/go/lib/tls"
-	"github.com/micro/go-log"
 )
 
 type buffer struct {

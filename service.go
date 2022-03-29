@@ -12,7 +12,7 @@ import (
 	"github.com/divisionone/go-micro/cmd"
 	"github.com/divisionone/go-micro/metadata"
 	"github.com/divisionone/go-micro/server"
-	"github.com/micro/go-log"
+	"github.com/divisionone/micro-go-log"
 )
 
 type service struct {

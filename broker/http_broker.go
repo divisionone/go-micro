@@ -18,11 +18,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/micro/go-log"
 	"github.com/divisionone/go-micro/broker/codec/json"
 	merr "github.com/divisionone/go-micro/errors"
 	"github.com/divisionone/go-micro/registry"
 	"github.com/divisionone/go-rcache"
+	"github.com/divisionone/micro-go-log"
 	maddr "github.com/divisionone/util/go/lib/addr"
 	mnet "github.com/divisionone/util/go/lib/net"
 	mls "github.com/divisionone/util/go/lib/tls"
