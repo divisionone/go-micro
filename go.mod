@@ -4,9 +4,9 @@ go 1.17
 
 require (
 	github.com/divisionone/cli v1.0.0
-	github.com/divisionone/go-rcache v1.0.4-0.20220330051847-66bd771a7109
+	github.com/divisionone/go-rcache v1.0.4-0.20220330053942-0c32b38bac7e
 	github.com/divisionone/mdns v1.0.1
-	github.com/divisionone/util v1.0.6-0.20220325021744-47679d83226e
+	github.com/divisionone/util v1.0.6-0.20220330053938-04253076c075
 	github.com/golang/protobuf v1.3.5
 	github.com/hashicorp/consul/api v1.5.0
 	github.com/micro/go-log v0.1.0
