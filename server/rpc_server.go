@@ -10,12 +10,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/micro/go-log"
 	"github.com/divisionone/go-micro/broker"
 	"github.com/divisionone/go-micro/codec"
 	"github.com/divisionone/go-micro/metadata"
 	"github.com/divisionone/go-micro/registry"
 	"github.com/divisionone/go-micro/transport"
+	"github.com/divisionone/micro-go-log"
 
 	"github.com/divisionone/util/go/lib/addr"
 )
