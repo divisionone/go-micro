@@ -15,7 +15,7 @@ import (
 	"github.com/divisionone/go-micro/metadata"
 	"github.com/divisionone/go-micro/registry"
 	"github.com/divisionone/go-micro/transport"
-	"github.com/micro/go-log"
+	"github.com/divisionone/micro-go-log"
 
 	"github.com/divisionone/util/go/lib/addr"
 )
