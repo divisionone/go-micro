@@ -12,10 +12,10 @@ github.com/divisionone/go-rcache v1.0.4-0.20220401023219-b4a6ce28e8dd h1:+KABNLH
 github.com/divisionone/go-rcache v1.0.4-0.20220401023219-b4a6ce28e8dd/go.mod h1:Xu0wbrE408y65BUuxaGqqTkro/ysTZm76PfyiFl8+C4=
 github.com/divisionone/mdns v1.0.1 h1:m6TgddiTUkCCjRj2A2D78U6vAGuVFI/K1Z9fBQ+6578=
 github.com/divisionone/mdns v1.0.1/go.mod h1:1wbMk9uBxd7+wyUnG+FMDziXZoXyUr/RIWQDf8W1L7E=
-github.com/divisionone/micro-go-log v0.0.0-20220329225141-38dfc0353446 h1:pM9fjBsuxrj3Lqb/0SfS6AFi0ytXjgiGuJ/TNdcNc14=
-github.com/divisionone/micro-go-log v0.0.0-20220329225141-38dfc0353446/go.mod h1:b503xepXb6aQF+cDtsd6iG5Y6dJ0Sc7SUoRIiFOYskk=
-github.com/divisionone/util v1.0.6-0.20220401022938-17507796a716 h1:lzwtHn6qK0THKstSulWy4vrE/1d0qr8L5RgTOGv6uug=
-github.com/divisionone/util v1.0.6-0.20220401022938-17507796a716/go.mod h1:+wPH3xTTOKwzgMknUjTApoqbdYGuhY9OheZBuPL1ahA=
+github.com/divisionone/micro-go-log v0.0.0-20220401021801-5024c5e56f11 h1:3IGoJrhEtO8F+rq5HiXeDvHz6kEeInX6VZjU6zb5aOQ=
+github.com/divisionone/micro-go-log v0.0.0-20220401021801-5024c5e56f11/go.mod h1:IiIQ+BuP2ph6/n1E1tRnwQZZ38T2yOFUfL3gfNR9Ojk=
+github.com/divisionone/util v1.0.6-0.20220401023215-69796281bd12 h1:3XQd5dgDWFFJrBTy5msElErAtKBIrtqb3P5Ilh2XGhU=
+github.com/divisionone/util v1.0.6-0.20220401023215-69796281bd12/go.mod h1:FkpLEcjS6Hfn+Vw1G+MPDrVcapZ3Q3euPASG+fqDBrA=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
 github.com/fatih/color v1.9.0 h1:8xPHl4/q1VyqGIPif1F+1V3Y3lSmrq01EabUW3CoW5s=
 github.com/fatih/color v1.9.0/go.mod h1:eQcE1qtQxscV5RaZvpXrrb8Drkc3/DdQ+uUYCNjL+zU=
