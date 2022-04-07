@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/divisionone/cli v1.0.0
-	github.com/divisionone/go-rcache v1.0.4-0.20220401022943-be27567ae2db
+	github.com/divisionone/go-rcache v1.0.4-0.20220401023219-b4a6ce28e8dd
 	github.com/divisionone/mdns v1.0.1
 	github.com/divisionone/micro-go-log v0.0.0-20220329225141-38dfc0353446
 	github.com/divisionone/util v1.0.6-0.20220401022938-17507796a716
