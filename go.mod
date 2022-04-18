@@ -3,10 +3,10 @@ module github.com/divisionone/go-micro
 go 1.17
 
 require (
-	github.com/divisionone/cli v0.2.2-0.20220418230938-7d48d89738b6
-	github.com/divisionone/go-rcache v0.0.0-20220331030558-87df2e272a4d
+	github.com/divisionone/cli v0.2.2-0.20220418232820-7231882c8555
+	github.com/divisionone/go-rcache v0.0.0-20220418232603-4e16935f554e
 	github.com/divisionone/mdns v0.0.0-20220418232007-a7aa0fd317ad
-	github.com/divisionone/micro-go-log v0.0.0-20220418230942-8cae87b895f4
+	github.com/divisionone/micro-go-log v0.0.0-20220418232529-4361a503ea3a
 	github.com/divisionone/util v0.0.0-20220418230111-a47b4c3f93c4
 	github.com/golang/protobuf v1.3.5
 	github.com/hashicorp/consul/api v1.5.0
