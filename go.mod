@@ -7,7 +7,7 @@ require (
 	github.com/divisionone/go-rcache v1.0.4-0.20220429052643-64447305d86a
 	github.com/divisionone/mdns v1.0.1
 	github.com/divisionone/micro-go-log v0.0.0-20220401021801-5024c5e56f11
-	github.com/divisionone/util v1.0.6-0.20220407231832-e160f5470eee
+	github.com/divisionone/util v1.0.6-0.20220429052633-b82d53737035
 	github.com/golang/protobuf v1.5.2
 	github.com/hashicorp/consul/api v1.5.0
 	github.com/mitchellh/hashstructure v1.1.0
