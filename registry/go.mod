@@ -3,7 +3,7 @@ module github.com/divisionone/go-micro/registry
 go 1.19
 
 require (
-	github.com/divisionone/mdns v0.0.0-20221207070114-a1e34565acc7
+	github.com/divisionone/mdns v1.5.0
 	github.com/hashicorp/consul/api v1.5.0
 	github.com/mitchellh/hashstructure v1.1.0
 )
