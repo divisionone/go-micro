@@ -2,12 +2,15 @@ module github.com/divisionone/go-micro
 
 go 1.19
 
+replace github.com/divisionone/go-micro/metadata => ./metadata
+
 replace github.com/divisionone/go-micro/registry => ./registry
 
 replace github.com/divisionone/go-micro/selector => ./selector
 
 require (
 	github.com/divisionone/cli v0.9.1-0.20221207070823-afa2aceba99f
+	github.com/divisionone/go-micro/metadata v0.0.0-00010101000000-000000000000
 	github.com/divisionone/go-micro/registry v0.0.0-00010101000000-000000000000
 	github.com/divisionone/go-micro/selector v0.0.0-00010101000000-000000000000
 	github.com/divisionone/go-rcache v0.0.0-20221207064910-5d97c790e129
