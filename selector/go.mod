@@ -2,10 +2,8 @@ module github.com/divisionone/go-micro/selector
 
 go 1.19
 
-replace github.com/divisionone/go-micro/registry => ../registry
-
 require (
-	github.com/divisionone/go-micro/registry v0.0.0-00010101000000-000000000000
+	github.com/divisionone/go-micro/registry v1.5.0
 	github.com/divisionone/micro-go-log v1.5.0
 )
 
