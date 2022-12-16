@@ -6,8 +6,8 @@ github.com/bgentry/speakeasy v0.1.0/go.mod h1:+zsyZBPWlz7T6j88CTgSN5bM796AkVf0kB
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/divisionone/micro-go-log v0.0.0-20221207065711-3a2b09240c2d h1:hDXkEaK257Ik/IfdRJbS0drMfvDGfyjHDsNPfI9rYL8=
-github.com/divisionone/micro-go-log v0.0.0-20221207065711-3a2b09240c2d/go.mod h1:bdVQon8dkOdZ9llrF7kHtO7am5EISxWMoOllhYI2VPM=
+github.com/divisionone/micro-go-log v1.5.0 h1:edBBqA19+mYT0J17k9zZOL8Bceq66Od1N/Z2kr9z0R0=
+github.com/divisionone/micro-go-log v1.5.0/go.mod h1:bdVQon8dkOdZ9llrF7kHtO7am5EISxWMoOllhYI2VPM=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
 github.com/fatih/color v1.9.0 h1:8xPHl4/q1VyqGIPif1F+1V3Y3lSmrq01EabUW3CoW5s=
 github.com/fatih/color v1.9.0/go.mod h1:eQcE1qtQxscV5RaZvpXrrb8Drkc3/DdQ+uUYCNjL+zU=

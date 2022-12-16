@@ -6,7 +6,7 @@ replace github.com/divisionone/go-micro/registry => ../registry
 
 require (
 	github.com/divisionone/go-micro/registry v0.0.0-00010101000000-000000000000
-	github.com/divisionone/micro-go-log v0.0.0-20221207065711-3a2b09240c2d
+	github.com/divisionone/micro-go-log v1.5.0
 )
 
 require (
