@@ -91,3 +91,10 @@ func WithTimeout(d time.Duration) DialOption {
 		o.Timeout = d
 	}
 }
+
+// WithContext is an option to set the dialer context.
+func WithContext(ctx context.Context) DialOption {
+	return func(o *DialOptions) {
+		o.Context = ctx
+	}
+}
