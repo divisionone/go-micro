@@ -2,8 +2,8 @@ package server
 
 import (
 	"context"
-	"time"
 	"sync"
+	"time"
 
 	"github.com/divisionone/go-micro/broker"
 	"github.com/divisionone/go-micro/codec"
@@ -22,6 +22,7 @@ type Options struct {
 	Address      string
 	Advertise    string
 	Id           string
+	IdFunc       func(addr string, port int) string
 	Version      string
 	HdlrWrappers []HandlerWrapper
 	SubWrappers  []SubscriberWrapper

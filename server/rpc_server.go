@@ -233,9 +233,14 @@ func (s *rpcServer) Register() error {
 		return err
 	}
 
+	nodeID := config.Name + "-" + config.Id
+	if config.IdFunc != nil {
+		nodeID = config.IdFunc(addr, port)
+	}
+
 	// register service
 	node := &registry.Node{
-		Id:       config.Name + "-" + config.Id,
+		Id:       nodeID,
 		Address:  addr,
 		Port:     port,
 		Metadata: config.Metadata,
@@ -309,7 +314,7 @@ func (s *rpcServer) Register() error {
 
 	s.registered = true
 
-	for sb, _ := range s.subscribers {
+	for sb := range s.subscribers {
 		handler := s.createSubHandler(sb, s.opts)
 		var opts []broker.SubscribeOption
 		if queue := sb.Options().Queue; len(queue) > 0 {
@@ -352,8 +357,13 @@ func (s *rpcServer) Deregister() error {
 		return err
 	}
 
+	nodeID := config.Name + "-" + config.Id
+	if config.IdFunc != nil {
+		nodeID = config.IdFunc(addr, port)
+	}
+
 	node := &registry.Node{
-		Id:      config.Name + "-" + config.Id,
+		Id:      nodeID,
 		Address: addr,
 		Port:    port,
 	}
