@@ -233,14 +233,14 @@ func (s *rpcServer) Register() error {
 		return err
 	}
 
-	nodeID := config.Name + "-" + config.Id
+	id := config.Id
 	if config.IdFunc != nil {
-		nodeID = config.IdFunc(addr, port)
+		id = config.IdFunc(addr, port)
 	}
 
 	// register service
 	node := &registry.Node{
-		Id:       nodeID,
+		Id:       config.Name + "-" + id,
 		Address:  addr,
 		Port:     port,
 		Metadata: config.Metadata,
@@ -357,13 +357,13 @@ func (s *rpcServer) Deregister() error {
 		return err
 	}
 
-	nodeID := config.Name + "-" + config.Id
+	id := config.Id
 	if config.IdFunc != nil {
-		nodeID = config.IdFunc(addr, port)
+		id = config.IdFunc(addr, port)
 	}
 
 	node := &registry.Node{
-		Id:      nodeID,
+		Id:      config.Name + "-" + id,
 		Address: addr,
 		Port:    port,
 	}
