@@ -13,15 +13,16 @@ import (
 )
 
 type Options struct {
-	Codecs       map[string]codec.NewCodec
-	Broker       broker.Broker
-	Registry     registry.Registry
-	Transport    transport.Transport
-	Metadata     map[string]string
-	Name         string
-	Address      string
-	Advertise    string
-	Id           string
+	Codecs    map[string]codec.NewCodec
+	Broker    broker.Broker
+	Registry  registry.Registry
+	Transport transport.Transport
+	Metadata  map[string]string
+	Name      string
+	Address   string
+	Advertise string
+	Id        string
+	// IdFunc is an Id generator function called prior to registration of the service, replacing the Id option valuer.
 	IdFunc       func(addr string, port int) string
 	Version      string
 	HdlrWrappers []HandlerWrapper

@@ -233,14 +233,18 @@ func (s *rpcServer) Register() error {
 		return err
 	}
 
-	id := config.Id
 	if config.IdFunc != nil {
-		id = config.IdFunc(addr, port)
+		config.Id = config.IdFunc(addr, port)
+
+		// Propagate the identifier back to the service config under mutex.
+		s.Lock()
+		s.opts.Id = config.Id
+		s.Unlock()
 	}
 
 	// register service
 	node := &registry.Node{
-		Id:       config.Name + "-" + id,
+		Id:       config.Name + "-" + config.Id,
 		Address:  addr,
 		Port:     port,
 		Metadata: config.Metadata,
@@ -357,13 +361,8 @@ func (s *rpcServer) Deregister() error {
 		return err
 	}
 
-	id := config.Id
-	if config.IdFunc != nil {
-		id = config.IdFunc(addr, port)
-	}
-
 	node := &registry.Node{
-		Id:      config.Name + "-" + id,
+		Id:      config.Name + "-" + config.Id,
 		Address: addr,
 		Port:    port,
 	}
