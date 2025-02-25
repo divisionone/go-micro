@@ -22,7 +22,7 @@ type Options struct {
 	Address   string
 	Advertise string
 	Id        string
-	// IdFunc is an Id generator function called prior to registration of the service, replacing the Id option valuer.
+	// IdFunc is an Id generator function called prior to registration of the service, replacing the Id option value.
 	IdFunc       func(addr string, port int) string
 	Version      string
 	HdlrWrappers []HandlerWrapper
