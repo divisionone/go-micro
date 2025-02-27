@@ -2,8 +2,8 @@ package server
 
 import (
 	"context"
-	"time"
 	"sync"
+	"time"
 
 	"github.com/divisionone/go-micro/broker"
 	"github.com/divisionone/go-micro/codec"
@@ -13,15 +13,17 @@ import (
 )
 
 type Options struct {
-	Codecs       map[string]codec.NewCodec
-	Broker       broker.Broker
-	Registry     registry.Registry
-	Transport    transport.Transport
-	Metadata     map[string]string
-	Name         string
-	Address      string
-	Advertise    string
-	Id           string
+	Codecs    map[string]codec.NewCodec
+	Broker    broker.Broker
+	Registry  registry.Registry
+	Transport transport.Transport
+	Metadata  map[string]string
+	Name      string
+	Address   string
+	Advertise string
+	Id        string
+	// IdFunc is an Id generator function called prior to registration of the service, replacing the Id option value.
+	IdFunc       func(addr string, port int) string
 	Version      string
 	HdlrWrappers []HandlerWrapper
 	SubWrappers  []SubscriberWrapper
