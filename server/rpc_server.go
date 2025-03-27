@@ -399,11 +399,23 @@ func (s *rpcServer) Deregister() error {
 	return nil
 }
 
+// ListenOptionsKey is the context key type used to store and retrieve a slice of []transport.ListenOption from
+// context. These options are provided to the transport.Listen() call.
+type ListenOptionsKey struct{}
+
 func (s *rpcServer) Start() error {
 	registerDebugHandler(s)
 	config := s.Options()
 
-	ts, err := config.Transport.Listen(config.Address)
+	var listenOpts []transport.ListenOption
+
+	if ctx := config.Context; ctx != nil {
+		if opts, ok := ctx.Value(ListenOptionsKey{}).([]transport.ListenOption); ok {
+			listenOpts = opts
+		}
+	}
+
+	ts, err := config.Transport.Listen(config.Address, listenOpts...)
 	if err != nil {
 		return err
 	}
