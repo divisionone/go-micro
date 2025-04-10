@@ -28,6 +28,8 @@ type Options struct {
 	HdlrWrappers []HandlerWrapper
 	SubWrappers  []SubscriberWrapper
 
+	ListenOptions []transport.ListenOption
+
 	RegisterTTL time.Duration
 
 	// Debug Handler which can be set by a user
@@ -191,5 +193,12 @@ func WrapHandler(w HandlerWrapper) Option {
 func WrapSubscriber(w SubscriberWrapper) Option {
 	return func(o *Options) {
 		o.SubWrappers = append(o.SubWrappers, w)
+	}
+}
+
+// ListenOptions appends the given listen options to the set passed into the server.
+func ListenOptions(opts ...transport.ListenOption) Option {
+	return func(o *Options) {
+		o.ListenOptions = append(o.ListenOptions, opts...)
 	}
 }
