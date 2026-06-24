@@ -22,13 +22,15 @@ type readWriteCloser struct {
 	rbuf *bytes.Buffer
 }
 
-var defaultCodecs = map[string]codec.NewCodec{
-	"application/json":         jsonrpc.NewCodec,
-	"application/json-rpc":     jsonrpc.NewCodec,
-	"application/protobuf":     protorpc.NewCodec,
-	"application/proto-rpc":    protorpc.NewCodec,
-	"application/octet-stream": protorpc.NewCodec,
-}
+var (
+	defaultCodecs = map[string]codec.NewCodec{
+		"application/json":         jsonrpc.NewCodec,
+		"application/json-rpc":     jsonrpc.NewCodec,
+		"application/protobuf":     protorpc.NewCodec,
+		"application/proto-rpc":    protorpc.NewCodec,
+		"application/octet-stream": protorpc.NewCodec,
+	}
+)
 
 func (rwc *readWriteCloser) Read(p []byte) (n int, err error) {
 	return rwc.rbuf.Read(p)
