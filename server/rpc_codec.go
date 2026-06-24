@@ -7,7 +7,6 @@ import (
 	"github.com/divisionone/go-micro/codec/jsonrpc"
 	"github.com/divisionone/go-micro/codec/protorpc"
 	"github.com/divisionone/go-micro/transport"
-	"github.com/pkg/errors"
 )
 
 type rpcPlusCodec struct {
@@ -23,15 +22,13 @@ type readWriteCloser struct {
 	rbuf *bytes.Buffer
 }
 
-var (
-	defaultCodecs = map[string]codec.NewCodec{
-		"application/json":         jsonrpc.NewCodec,
-		"application/json-rpc":     jsonrpc.NewCodec,
-		"application/protobuf":     protorpc.NewCodec,
-		"application/proto-rpc":    protorpc.NewCodec,
-		"application/octet-stream": protorpc.NewCodec,
-	}
-)
+var defaultCodecs = map[string]codec.NewCodec{
+	"application/json":         jsonrpc.NewCodec,
+	"application/json-rpc":     jsonrpc.NewCodec,
+	"application/protobuf":     protorpc.NewCodec,
+	"application/proto-rpc":    protorpc.NewCodec,
+	"application/octet-stream": protorpc.NewCodec,
+}
 
 func (rwc *readWriteCloser) Read(p []byte) (n int, err error) {
 	return rwc.rbuf.Read(p)
@@ -98,7 +95,7 @@ func (c *rpcPlusCodec) WriteResponse(r *response, body interface{}, last bool) e
 	}
 	if err := c.codec.Write(m, body); err != nil {
 		c.buf.wbuf.Reset()
-		m.Error = errors.Wrapf(err, "Unable to encode body").Error()
+		m.Error = "Unable to encode body: " + err.Error()
 		if err := c.codec.Write(m, nil); err != nil {
 			return err
 		}
