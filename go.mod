@@ -12,7 +12,6 @@ require (
 	github.com/divisionone/util v1.5.0
 	github.com/golang/protobuf v1.3.5
 	github.com/pborman/uuid v1.2.1
-	github.com/pkg/errors v0.8.1
 )
 
 require (
