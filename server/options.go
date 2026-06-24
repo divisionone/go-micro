@@ -2,8 +2,8 @@ package server
 
 import (
 	"context"
-	"time"
 	"sync"
+	"time"
 
 	"github.com/divisionone/go-micro/broker"
 	"github.com/divisionone/go-micro/codec"
@@ -13,18 +13,22 @@ import (
 )
 
 type Options struct {
-	Codecs       map[string]codec.NewCodec
-	Broker       broker.Broker
-	Registry     registry.Registry
-	Transport    transport.Transport
-	Metadata     map[string]string
-	Name         string
-	Address      string
-	Advertise    string
-	Id           string
+	Codecs    map[string]codec.NewCodec
+	Broker    broker.Broker
+	Registry  registry.Registry
+	Transport transport.Transport
+	Metadata  map[string]string
+	Name      string
+	Address   string
+	Advertise string
+	Id        string
+	// IdFunc is an Id generator function called prior to registration of the service, replacing the Id option value.
+	IdFunc       func(addr string, port int) string
 	Version      string
 	HdlrWrappers []HandlerWrapper
 	SubWrappers  []SubscriberWrapper
+
+	ListenOptions []transport.ListenOption
 
 	RegisterTTL time.Duration
 
@@ -189,5 +193,12 @@ func WrapHandler(w HandlerWrapper) Option {
 func WrapSubscriber(w SubscriberWrapper) Option {
 	return func(o *Options) {
 		o.SubWrappers = append(o.SubWrappers, w)
+	}
+}
+
+// ListenOptions appends the given listen options to the set passed into the server.
+func ListenOptions(opts ...transport.ListenOption) Option {
+	return func(o *Options) {
+		o.ListenOptions = append(o.ListenOptions, opts...)
 	}
 }
