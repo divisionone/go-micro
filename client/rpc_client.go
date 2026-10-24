@@ -240,8 +240,11 @@ func (r *rpcClient) Call(ctx context.Context, request Request, response interfac
 	// check if we already have a deadline
 	d, ok := ctx.Deadline()
 	if !ok {
+		var cancel context.CancelFunc
+
 		// no deadline so we create a new one
-		ctx, _ = context.WithTimeout(ctx, callOpts.RequestTimeout)
+		ctx, cancel = context.WithTimeout(ctx, callOpts.RequestTimeout)
+		defer cancel()
 	} else {
 		// got a deadline so no need to setup context
 		// but we need to set the timeout we pass along
